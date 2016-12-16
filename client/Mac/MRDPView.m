@@ -940,6 +940,7 @@ BOOL mac_post_connect(freerdp* instance)
 	rdp_pointer.Set = mf_Pointer_Set;
 	rdp_pointer.SetNull = mf_Pointer_SetNull;
 	rdp_pointer.SetDefault = mf_Pointer_SetDefault;
+	rdp_pointer.SetPosition = mf_Pointer_SetPosition;
 	settings = instance->settings;
 
 	if (!gdi_init(instance, PIXEL_FORMAT_BGRX32))
@@ -1136,6 +1137,15 @@ BOOL mf_Pointer_SetDefault(rdpContext* context)
 	mfContext* mfc = (mfContext*) context;
 	MRDPView* view = (MRDPView*) mfc->view;
 	[view setCursor:[NSCursor arrowCursor]];
+	return TRUE;
+}
+
+static BOOL mf_Pointer_SetPosition(rdpContext* context,
+                                    UINT32 x, UINT32 y)
+{
+	if (!context)
+		return FALSE;
+
 	return TRUE;
 }
 
