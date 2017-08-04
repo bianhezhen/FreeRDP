@@ -769,6 +769,9 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 		if (strcmp(formatType, "public.utf8-plain-text") == 0)
 		{
 			formatData = [item dataForType:type];
+			if ([formatData length] == 0) {
+				continue;
+			}
 			formatId = ClipboardRegisterFormat(mfc->clipboard, "UTF8_STRING");
 			/* length does not include null terminator */
 			size = (UINT32) [formatData length] + 1;
